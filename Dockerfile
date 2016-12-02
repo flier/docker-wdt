@@ -10,4 +10,6 @@ RUN git clone https://github.com/facebook/folly.git && \
     cd wdt; cmake .; make && \
     make install; rm -rf folly wdt
 
-CMD ["/usr/local/bin/wdt"]
+ENTRYPOINT ["/usr/local/bin/wdt"]
+
+CMD ["--help"]
