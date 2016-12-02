@@ -7,14 +7,15 @@ RUN apt-get -y update && \
 
 RUN git clone https://github.com/facebook/folly.git && \
     git clone https://github.com/facebook/wdt.git && \
-    cd wdt; cmake .; make && \
-    make install; rm -rf folly wdt
+    cd wdt; cmake .; make; make install; rm -rf folly wdt
 
 ENV WDTDATA /data
 
 VOLUME ["/data"]
 
-RUN mkdir /data
+RUN mkdir -p /data
+
+WORKDIR /data
 
 COPY docker-entrypoint.sh /
 
