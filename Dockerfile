@@ -10,6 +10,14 @@ RUN git clone https://github.com/facebook/folly.git && \
     cd wdt; cmake .; make && \
     make install; rm -rf folly wdt
 
-ENTRYPOINT ["/usr/local/bin/wdt"]
+ENV WDTDATA /data
 
-CMD ["--help"]
+VOLUME ["/data"]
+
+RUN mkdir /data
+
+COPY docker-entrypoint.sh /
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+CMD ["wdt"]
